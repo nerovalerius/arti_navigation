@@ -13,7 +13,7 @@
   <node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_lidar_os1" args="0.55 0 0 3.14159265359 0 0 base_link os1_lidar" />
 
   <!-- Run Rviz -->
-  <include file="$(find arti_navigation)/launch/arti_rviz_with_os1.launch">
+  <include file="$(find arti_navigation)/launch/rviz_arti_with_os1.launch">
     <arg name="rviz_tutorial" value="$(arg rviz_tutorial)"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
