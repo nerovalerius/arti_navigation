@@ -1,11 +1,7 @@
 <launch>
 
-  <arg name="planner" default="ompl" />
-  <arg name="load_gripper" default="true" />
-
   <!-- By default, we are not in debug mode -->
   <arg name="debug" default="false" />
-
   <arg name="rviz_tutorial" default="false" />
   <arg name="use_gui" default="false" />
 
