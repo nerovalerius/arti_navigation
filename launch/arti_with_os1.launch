@@ -9,7 +9,7 @@
   <arg name="visualization" default="false" />
 
   <!-- Start the Ouster OS1 Ros Node - PointCloud -->
-  <include file="~/arti_ws/src/ouster_example/ouster_ros/os1.launch">">
+  <include file="~/arti_ws/src/ouster_example/ouster_ros/os1.launch">
     <arg name="os1_hostname" value="$(arg os1_ip)"/>">
     <arg name="os1_udp_dest" value="$(arg os1_goal_ip)"/>">
     <arg name="lidar_mode" value="$(arg os1_resolution_and_frequency)"/>">
