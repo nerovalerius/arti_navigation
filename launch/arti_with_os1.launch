@@ -1,29 +1,24 @@
 <launch>
 
   <!-- Arguments -->
-  <arg name="debug" default="false" />
-  <arg name="rviz_tutorial" default="false" />
   <arg name="os1_ip" default="192.168.5.4" />
   <arg name="os1_goal_ip" default="192.168.5.5" />
   <arg name="os1_resolution_and_frequency" default="1024x10" />
   <arg name="visualization" default="false" />
 
   <!-- Start the Ouster OS1 Ros Node - PointCloud -->
-  <include file="~/arti_ws/src/ouster_example/ouster_ros/os1.launch">
+  <include file="/home/iotdev/arti_ws/src/ouster_example/ouster_ros/os1.launch">
     <arg name="os1_hostname" value="$(arg os1_ip)"/>">
     <arg name="os1_udp_dest" value="$(arg os1_goal_ip)"/>">
     <arg name="lidar_mode" value="$(arg os1_resolution_and_frequency)"/>">
     <arg name="viz" value="$(arg visualization)"/>">
-    <arg name="debug" value="$(arg debug)"/>
   </include>
   
   <!-- Transformation from the Ouster OS1 lidar to the robot -->
-  <node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_lidar_os1" args="0.55 0 0 3.14159265359 0 0 base_link os1_lidar" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_lidar_os1" args="0.55 0 0 0 0 0 base_link os1_sensor" />
 
   <!-- Start Rviz with predefined config -->
   <include file="$(find arti_navigation)/launch/rviz_arti_with_os1.launch">
-    <arg name="rviz_tutorial" value="$(arg rviz_tutorial)"/>
-    <arg name="debug" value="$(arg debug)"/>
   </include>
   
 </launch>

@@ -199,8 +199,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 2.19431782
-        Min Value: -0.730561376
+        Max Value: 2.1787827
+        Min Value: -0.698009551
         Value: true
       Axis: Z
       Channel Name: z
@@ -220,7 +220,7 @@ Visualization Manager:
       Selectable: true
       Size (Pixels): 3
       Size (m): 0.0199999996
-      Style: Boxes
+      Style: Points
       Topic: /os1_cloud_node/points
       Unreliable: false
       Use Fixed Frame: true
