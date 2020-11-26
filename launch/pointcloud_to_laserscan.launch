@@ -3,28 +3,34 @@
   <!-- Start Pointcloud2 to laserScan-->
   <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
     <remap from="cloud_in" to="/os1_cloud_node/points"/>
-    <remap from="scan" to="/laser/scan" />
+    <remap from="/laser/scan" to="/scan" />
     <rosparam>
-      #target_frame: camera_link
-      #transform_tolerance: 0.01
-      #min_height: 0.0
-      #max_height: 1.0
-      
-      #angle_min: -1.5708
-      #angle_max: 1.5708
-      #angle_increment: 0.0087
-      #scan_time: 0.3333
-      #range_min: 0.45
-      #range_max: 4.0
-      #use_inf: true
-      
-      #concurrency_level affects number of pc queued for processing and the number of threadsused
-      # 0: Detect number of cores
-      # 1: Single threaded
-      # 2: inf : Parallelism level
-      #concurrency_level: 1
+      #target_frame: camera_link # Leave disabled to output scan in pointcloud frame
+      transform_tolerance: 0.01
+      min_height: 0.0
+      max_height: 1.0
+
+      angle_min: -1.5708 # -M_PI/2
+      angle_max: 1.5708 # M_PI/2
+      angle_increment: 0.0087 # M_PI/360.0
+      scan_time: 0.3333
+      range_min: 0.45
+      range_max: 4.0
+      use_inf: true
+
+      # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+      # 0 : Detect number of cores
+      # 1 : Single threaded
+      # 2->inf : Parallelism level
+      concurrency_level: 1
     </rosparam>
   </node>
+
+   <!-- Transformation from the Ouster OS1 lidar to the robot base_link-->
+  <!--node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_os1_sensor" args="0.55 0 0 0 0 0 base_link os1_sensor" /-->
+  <!--node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_os1_lidar" args="0.55 0 0 0 0 0 base_link os1_lidar" /-->
+  <!--node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_os1_imu" args="0.55 0 0 0 0 0 base_link os1_imu" /-->
+
 
   <!--
     # hints to record/-playback and save and show map:
@@ -32,7 +38,7 @@
     rosbag record -O mylaserdata.bag /laser/scan /tf
     rosparam set use_sim_time true
     rosrun gmapping slam_gmapping scan:=laser/scan
-    rosbag play --clock mylaserdata.bag
+    rosbag play - -clock mylaserdata.bag
     rosrun map_server map_saver -f mymap
     eog mymap.pgm
 

@@ -12,10 +12,14 @@
     <arg name="os1_udp_dest" value="$(arg os1_goal_ip)"/>">
     <arg name="lidar_mode" value="$(arg os1_resolution_and_frequency)"/>">
     <arg name="viz" value="$(arg visualization)"/>">
+    <arg name="timestamp_mode" value="TIME_FROM_PTP_1588"/>
   </include>
   
   <!-- Transformation from the Ouster OS1 lidar to the robot -->
-  <node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_lidar_os1" args="0.55 0 0 0 0 0 base_link os1_sensor" />
+  <node pkg="tf" type="static_transform_publisher" name="base_link_os1_sensor" args="0.55 0 0 0 0 0 base_link os1_sensor 100" />
+  <node pkg="tf" type="static_transform_publisher" name="os1_sensor_os1_lidar" args="0 0 0 0 0 0 os1_sensor os1_lidar 100" />
+  <node pkg="tf" type="static_transform_publisher" name="os1_sensor_os1_imu" args="0 0 0 0 0 0 os1_sensor os1_imu 100" />
+
 
   <!-- Start Rviz with predefined config -->
   <include file="$(find arti_navigation)/launch/rviz_arti_with_os1.launch">

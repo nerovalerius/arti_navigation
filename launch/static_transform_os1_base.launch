@@ -1,0 +1,6 @@
+<launch>
+
+  <!-- Transformation from the Ouster OS1 lidar to the robot -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_lidar_os1" args="0.55 0 0 0 0 0 base_link os1_sensor" />
+  
+</launch>
