@@ -8,7 +8,7 @@
 
   <!-- Mapping Parameters -->
   <arg name="map" default="true" />
-  <arg name="cartographer" default="false" />
+  <arg name="cartographer" default="true" />
   <arg name="octomap" default="false" />
   <arg name="hector" default="false" />
 
