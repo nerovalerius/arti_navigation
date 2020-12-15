@@ -14,5 +14,5 @@
 
 ## Start the map making process with google cartographer
 - After the ros nodes on the robot and the os1_lidar with rviz is launched, start the cartograhper ROS node
-  with `roslaunch arti_navigation arti_cartographer.ros`
+  with `roslaunch arti_navigation arti_cartographer.launch`
 
