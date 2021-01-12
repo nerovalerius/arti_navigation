@@ -16,10 +16,9 @@
   </include>
   
   <!-- Transformation from the Ouster OS1 lidar to the robot -->
-  <node pkg="tf" type="static_transform_publisher" name="base_link_os1_sensor" args="0.55 0 0 3.14159265359 0 0 base_link os1_sensor 100" />
-  <node pkg="tf" type="static_transform_publisher" name="base_link_os1_lidar" args="0 0 0 0 0 0 os1_sensor os1_lidar 100" />
-  <node pkg="tf" type="static_transform_publisher" name="base_link_os1_imu" args="0 0 0 0 0 0 os1_sensor os1_imu 100" />
-
+  <node pkg="tf" type="static_transform_publisher" name="base_link_os1_sensor" args="0.55 0 0 0 0 0 base_link os1_sensor 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="os1_sensor_os1_lidar" args="0 0 0.03618 3.14159 0 0 os1_sensor os1_lidar 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="os1_sensor_os1_imu" args="0.006253 -0.011775 0.007645 2 0 0 os1_sensor os1_imu 100"/>
 
   <!-- Start Rviz with predefined config -->
   <include file="$(find arti_navigation)/launch/rviz_arti_with_os1.launch">

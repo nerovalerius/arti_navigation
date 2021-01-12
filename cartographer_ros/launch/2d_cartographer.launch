@@ -17,7 +17,7 @@
 
 <launch>
 
-  <!--param name="robot_description" textfile="$(find arti_navigation)/cartographer_ros/urdf/os1_sensor.urdf" /-->
+  <!--param name="robot_description" textfile="$(find arti_navigation)/cartographer_ros/urdf/os1_sensor.urdf"-->
   <!--param name="robot_description" textfile="$(find arti_navigation)/cartographer_ros/urdf/arti_mk3.urdf" /-->
 
   <node name="cartographer_node" pkg="cartographer_ros"
