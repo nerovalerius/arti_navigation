@@ -2,3 +2,4 @@
     <!-- Start Rviz with a predefined config for the ARTI mobile robot -->
     <node type="rviz" name="rviz" pkg="rviz" args="-d $(find arti_navigation)/config/arti_with_os1.rviz" />
 </launch>
+
