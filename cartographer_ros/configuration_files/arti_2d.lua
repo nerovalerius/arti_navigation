@@ -48,28 +48,29 @@ TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
 
 -- Use the IMU data from Ouster - does not seem to work properly - it is optional for 2D anyway
 TRAJECTORY_BUILDER_2D.use_imu_data = false
+TRAJECTORY_BUILDER_2D.imu_gravity_time_constant = .1
 
 TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.linear_search_window = 0.15
 TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.angular_search_window = math.rad(35.)
 
 -- Bandpass for 3D Point Clouds - Distance in meters
 -- Localization fails of the range is too small, e.g from 0.5 to 1
-TRAJECTORY_BUILDER_2D.min_range = 0.5
+TRAJECTORY_BUILDER_2D.min_range = 0.4
 TRAJECTORY_BUILDER_2D.max_range = 4
 
-TRAJECTORY_BUILDER_2D.imu_gravity_time_constant = .1
+
 
 POSE_GRAPH.optimization_problem.huber_scale = 1e2
 
 -- turn off global SLAM to not mess with tuning of local SLAM = 0
--- POSE_GRAPH.optimize_every_n_nodes = 0
+-- POSE_GRAPH.optimize_every_n_nodes = 1
 
 -- voxel size -- original value: 0.025
 -- value 0.5 is too high - result gets blurred
  TRAJECTORY_BUILDER_2D.voxel_filter_size = 0.025
 
 -- size of submaps
--- TRAJECTORY_BUILDER_2D.submaps.num_range_data = 
+TRAJECTORY_BUILDER_2D.submaps.num_range_data = 1000                                       -- IMPORTANT!!!
 
 -- Number of 3D Images for a single scan -- 1 or let it be - does not help
 -- TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 1
@@ -79,14 +80,14 @@ POSE_GRAPH.optimization_problem.huber_scale = 1e2
 -- Costs for moving the result away from the prior 
 -- scan matching has to generate a higher score in another position to be accepted
 -- translation values: 1e3 = really expensive
-TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 0.5
-TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 0.5
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 3                           -- IMPORTANT!!!
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 3                              -- IMPORTANT!!!
 
 -- individual weights of local SLAM and odometry
- POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 0.5
- POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 0.5
- POSE_GRAPH.optimization_problem.odometry_translation_weight = 0.5
- POSE_GRAPH.optimization_problem.odometry_rotation_weight = 0.5
+ POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 3                   -- IMPORTANT!!!
+ POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 3                      -- IMPORTANT!!!
+ POSE_GRAPH.optimization_problem.odometry_translation_weight = 3                          -- IMPORTANT!!!
+ POSE_GRAPH.optimization_problem.odometry_rotation_weight = 3                             -- IMPORTANT!!!
 
 -- Set Threads to 4 
 MAP_BUILDER.num_background_threads = 4
@@ -96,5 +97,3 @@ MAP_BUILDER.num_background_threads = 4
 
 
 return options
-
-

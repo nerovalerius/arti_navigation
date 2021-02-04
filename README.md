@@ -20,3 +20,17 @@
 ### Start the map making process with google cartographer
 - After the ros nodes on the robot and the os1_lidar with rviz is launched, start the cartograhper ROS node
   with `roslaunch arti_navigation arti_cartographer.launch`
+
+### Saving the map
+To store the processed data of google cartographer, please use the following commands while the cartographer node is still running.
+
+`rosservice call /write_state "filename: 'map.pbstream' 
+include_unfinished_submaps: true"`
+
+`mv .ros/map.pbstream ~`
+
+
+## Tuning
+arti_2d.lua contains the configuration for google cartographer.
+There are some crucial parameters to set and optimize, otherwise the map creation fails.
+Those values are marked with an `-- IMPORTANT!`.
