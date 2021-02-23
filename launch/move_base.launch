@@ -1,0 +1,20 @@
+<!-- http://wiki.ros.org/navigation/Tutorials/RobotSetup -->
+
+<launch>
+
+   <master auto="start"/>
+ <!-- Run the map server with a given map --> 
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/srfg_map.yaml"/>
+
+ <!--- Run AMCL --> 
+    <include file="$(find amcl)/examples/amcl_omni.launch" />
+
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find my_robot_name_2dnav)/common_costmap_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find my_robot_name_2dnav)/common_costmap_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find my_robot_name_2dnav)/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find my_robot_name_2dnav)/global_costmap_params.yaml" command="load" /> 
+    <rosparam file="$(find my_robot_name_2dnav)/base_local_planner_params.yaml" command="load" />
+ </node>
+
+</launch> 
