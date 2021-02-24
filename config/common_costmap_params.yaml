@@ -3,20 +3,41 @@
 # In order to do this properly, we'll need to point the costmaps at the sensor topics they should listen to for updates.
 
 # determines the maximum range sensor reading that will result in an obstacle being put into the costmap
-obstacle_range: 2.5 
+obstacle_range: 6 
 # the robot will attempt to clear out space in front of it up to X.X meters away given a sensor reading
-raytrace_range: 3.0
+raytrace_range: 8.5
 
-footprint: [[x0, y0], [x1, y1], ... [xn, yn]]
+# topic where occupancy grid is published.
+map_topic: /map
+
+# defines if move_base should periodically check if map was updated.
+subscribe_to_updates: true
+
+# defines coordinate frame tied to occupancy grid map.
+global_frame: map
+
+# defines coordinate frame tied to robot.
+robot_base_frame: base_link
+
+# defines if costmap should be always published with complete data.
+always_send_full_costmap: true
+
+# ARTI: 800 mm x 600 mm - defines coordinates of robot outline, this will considered during collision detecting.
+footprint: [[0.4, 0.3], [0.4, -0.3], [-0.4, -0.3], [-0.4, 0.3]]
 #robot_radius: ir_of_robot
 
-# the robot will treat all paths that stay X.X meters or more away from obstacles as having equal obstacle cost. 
-inflation_radius: 0.55
-
-# defines a list of sensors that are going to be passing information to the costmap 
+# defines a list of sensors that are going to be passing information to the costmap
 observation_sources: laser_scan_sensor point_cloud_sensor
 
 # Each sensor is defined in the next lines. 
-laser_scan_sensor: {sensor_frame: frame_name, data_type: LaserScan, topic: topic_name, marking: true, clearing: true}
+# ensor_frame - coordinate frame tied to sensor
+# ata_type - type of message published by sensor
+# topic - name of topic where sensor data is published
+# arking - true if sensor can be used to mark area as occupied
+# clearing - true if sensor can be used to mark area as clear
+laser_scan_sensor: {sensor_frame: velodyne, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
 
-point_cloud_sensor: {sensor_frame: frame_name, data_type: PointCloud, topic: topic_name, marking: true, clearing: true}
+point_cloud_sensor: {sensor_frame: velodyne, data_type: PointCloud, topic: /os1_cloud_node/points, marking: true, clearing: true}
+
+
+

@@ -1,20 +1,46 @@
 <!-- http://wiki.ros.org/navigation/Tutorials/RobotSetup -->
-
 <launch>
 
+   <!-- Handling Parameters -->
+   <arg name="gmapping" default="false" />
+   <arg name="cartographer" default="true" />
+   <arg name="rviz" default="true" />
+
    <master auto="start"/>
- <!-- Run the map server with a given map --> 
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/srfg_map.yaml"/>
 
- <!--- Run AMCL --> 
-    <include file="$(find amcl)/examples/amcl_omni.launch" />
+   <!-- Run Transformations and OS1 Lidar -->
+   <include file="$(find arti_navigation)/launch/arti_with_os1.launch">
+      <arg name="rviz" value="rviz" />
+   </include>
 
-   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find my_robot_name_2dnav)/common_costmap_params.yaml" command="load" ns="global_costmap" /> 
-    <rosparam file="$(find my_robot_name_2dnav)/common_costmap_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find my_robot_name_2dnav)/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find my_robot_name_2dnav)/global_costmap_params.yaml" command="load" /> 
-    <rosparam file="$(find my_robot_name_2dnav)/base_local_planner_params.yaml" command="load" />
- </node>
+   <!-- Run the map server with a given map --> 
+   <node name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/srfg_map.yaml"/>
 
-</launch> 
+   <!--- Run AMCL --> 
+   <include file="$(find amcl)/examples/amcl_omni.launch" />
+
+   <!-- Gmapping -->
+   <include if="$(arg gmapping)" file="$(find arti_navigation)/launch/arti_gmapping.launch"/>
+
+   <!-- Cartographer -->
+   <include if="$(arg cartographer)" file="$(find arti_navigation)/launch/arti_cartographer.launch">
+      <arg name="record" value="false" />
+      <arg name="rviz" value="false" />
+      <arg name="replay" value="false" />
+      <arg name="os1" value="false" /> 
+      <arg name="map" value="true" />
+      <arg name="octomap" value="false" />
+      <arg name="hector" value="false" />
+   </include>
+
+   <!-- Load move base with our defined costmap and trajectory planning parameters  -->
+   <node pkg="move_base" type="move_base" name="move_base" output="screen">
+      <param name="controller_frequency" value="10.0"/>
+      <rosparam file="$(find arti_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find arti_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find arti_navigation)/config/local_costmap_params.yaml" command="load" />
+      <rosparam file="$(find arti_navigation)/config/global_costmap_params.yaml" command="load" />
+      <rosparam file="$(find arti_navigation)/config/trajectory_planner.yaml" command="load" />
+   </node>
+
+</launch>

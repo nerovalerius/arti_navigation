@@ -4,7 +4,6 @@
   <arg name="record" default="false" />
   <arg name="rviz" default="false" />
   <arg name="replay" default="false" />
-  <arg name="os1" default="false" /> 
 
   <!-- Mapping Parameters -->
   <arg name="map" default="true" />
@@ -31,12 +30,12 @@
    </group>
 
   <!-- Record data  -->
-  <node pkg="rosbag" type="record" name="rosbag_record_all"
-    args="-a -o $(find arti_navigation)/data/arti_rosbag"
-    if="$(arg record)" /> 
+  <node if="$(arg record)" pkg="rosbag" type="record" name="rosbag_record_all" args="-a -o $(find arti_navigation)/data/arti_rosbag"/> 
 
   <!-- Load RVIZ -->
-  <node if="$(arg rviz)" name="rviz_map" pkg="rviz" type="rviz" args="-d $(find arti_navigation)/config/arti_with_os1.rviz" />
+  <node if="$(arg rviz)" name="rviz_map" pkg="rviz" type="rviz" args="-d $(find arti_navigation)/config/arti_with_os1.rviz">
+  <arg name="rviz" value="rviz" />
+  </node>
 
 
 </launch>

@@ -5,6 +5,7 @@
   <arg name="os1_goal_ip" default="192.168.5.5" />
   <arg name="os1_resolution_and_frequency" default="1024x10" />
   <arg name="visualization" default="false" />
+  <arg name="rviz" default="true" />
 
   <!-- Start the Ouster OS1 Ros Node - PointCloud -->
   <include file="/home/iotdev/arti_ws/src/ouster_example/ouster_ros/os1.launch">
@@ -21,7 +22,7 @@
   <node pkg="tf" type="static_transform_publisher" name="os1_sensor_os1_imu" args="0.006253 -0.011775 0.007645 2 0 0 os1_sensor os1_imu 100"/>
 
   <!-- Start Rviz with predefined config -->
-  <include file="$(find arti_navigation)/launch/rviz_arti_with_os1.launch">
+  <include if="$(arg rviz)" file="$(find arti_navigation)/launch/rviz_arti_with_os1.launch">
   </include>
   
 </launch>
