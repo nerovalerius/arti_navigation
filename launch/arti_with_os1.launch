@@ -21,8 +21,7 @@
   <node pkg="tf" type="static_transform_publisher" name="os1_sensor_os1_lidar" args="0 0 0.03618 3.14159 0 0 os1_sensor os1_lidar 100"/>
   <node pkg="tf" type="static_transform_publisher" name="os1_sensor_os1_imu" args="0.006253 -0.011775 0.007645 2 0 0 os1_sensor os1_imu 100"/>
 
-  <!-- Start Rviz with predefined config -->
-  <include if="$(arg rviz)" file="$(find arti_navigation)/launch/rviz_arti_with_os1.launch">
-  </include>
-  
+  <!-- Start Rviz with a predefined config for the ARTI mobile robot -->
+  <node if="$(arg rviz)" type="rviz" name="rviz" pkg="rviz" args="-d $(find arti_navigation)/config/arti_path_planning.rviz" />
+
 </launch>

@@ -5,16 +5,18 @@
    <arg name="gmapping" default="false" />
    <arg name="cartographer" default="true" />
    <arg name="rviz" default="true" />
-
-   <master auto="start"/>
+   <arg name="map" default="false" />
 
    <!-- Run Transformations and OS1 Lidar -->
    <include file="$(find arti_navigation)/launch/arti_with_os1.launch">
-      <arg name="rviz" value="rviz" />
+      <arg name="rviz" value="$(arg rviz)" />
    </include>
 
+   <!-- Transformations for costmap -->
+   <!--node pkg="tf" type="static_transform_publisher" name="static_costmap_baselink" args="0 0 0 0 0 0 /costmap /base_link 100"/-->
+
    <!-- Run the map server with a given map --> 
-   <node name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/srfg_map.yaml"/>
+   <node if="$(arg map)" name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/maps/srfg_map.yaml"/>
 
    <!--- Run AMCL --> 
    <include file="$(find amcl)/examples/amcl_omni.launch" />
@@ -27,7 +29,6 @@
       <arg name="record" value="false" />
       <arg name="rviz" value="false" />
       <arg name="replay" value="false" />
-      <arg name="os1" value="false" /> 
       <arg name="map" value="true" />
       <arg name="octomap" value="false" />
       <arg name="hector" value="false" />
@@ -36,8 +37,8 @@
    <!-- Load move base with our defined costmap and trajectory planning parameters  -->
    <node pkg="move_base" type="move_base" name="move_base" output="screen">
       <param name="controller_frequency" value="10.0"/>
-      <rosparam file="$(find arti_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
-      <rosparam file="$(find arti_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+      <rosparam file="$(find arti_navigation)/config/common_costmap_params.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find arti_navigation)/config/common_costmap_params.yaml" command="load" ns="local_costmap" />
       <rosparam file="$(find arti_navigation)/config/local_costmap_params.yaml" command="load" />
       <rosparam file="$(find arti_navigation)/config/global_costmap_params.yaml" command="load" />
       <rosparam file="$(find arti_navigation)/config/trajectory_planner.yaml" command="load" />
