@@ -8,22 +8,22 @@ obstacle_range: 6
 raytrace_range: 8.5
 
 # topic where occupancy grid is published.
-map_topic: /map
+#map_topic: /map
 
 # defines if move_base should periodically check if map was updated.
-subscribe_to_updates: true
+#subscribe_to_updates: true
 
 # defines coordinate frame tied to occupancy grid map.
-global_frame: map
+#global_frame: map
 
 # defines coordinate frame tied to robot.
-robot_base_frame: base_link
+#robot_base_frame: base_link
 
 # defines if costmap should be always published with complete data.
-always_send_full_costmap: true
+#always_send_full_costmap: true
 
 # ARTI: 800 mm x 600 mm - defines coordinates of robot outline, this will considered during collision detecting.
-footprint: [[0.4, 0.3], [0.4, -0.3], [-0.4, -0.3], [-0.4, 0.3]]
+footprint: [[0.65, 0.3], [0.65, -0.3], [-0.15, -0.3], [-0.15, 0.3]]
 footprint_padding: 0.1
 
 #robot_radius: ir_of_robot
@@ -32,14 +32,11 @@ footprint_padding: 0.1
 observation_sources: point_cloud_sensor
 
 # Each sensor is defined in the next lines. 
-# ensor_frame - coordinate frame tied to sensor
-# ata_type - type of message published by sensor
+# sensor_frame - coordinate frame tied to sensor
+# data_type - type of message published by sensor
 # topic - name of topic where sensor data is published
 # arking - true if sensor can be used to mark area as occupied
 # clearing - true if sensor can be used to mark area as clear
 #laser_scan_sensor: {sensor_frame: os1_lidar, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
 
-point_cloud_sensor: {sensor_frame: os1_lidar, data_type: PointCloud2, topic: /os1_cloud_node/points, marking: true, clearing: true, max_obstacle_height: 0.5, min_obstacle_height: 0.03}
-
-
-
+point_cloud_sensor: {sensor_frame: os1_lidar, data_type: PointCloud2, topic: /os1_cloud_node/points, marking: true, clearing: true} #, max_obstacle_height: 0.5, min_obstacle_height: 0.03
