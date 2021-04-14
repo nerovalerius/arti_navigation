@@ -2,8 +2,8 @@
 <launch>
 
    <!-- Handling Parameters -->
-   <arg name="gmapping" default="true" />
-   <arg name="cartographer" default="false" />
+   <arg name="gmapping" default="false" />
+   <arg name="cartographer" default="true" />
    <arg name="rviz" default="true" />
    <arg name="map" default="false" />
 
@@ -12,11 +12,8 @@
       <arg name="rviz" value="$(arg rviz)" />
    </include>
 
-   <!-- Transformations for costmap -->
-   <!--node pkg="tf" type="static_transform_publisher" name="static_costmap_baselink" args="0 0 0 0 0 0 base_link costmap 100"/-->
-
    <!-- Run the map server with a given map --> 
-   <node if="$(arg map)" name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/maps/srfg_map.yaml"/>
+   <!--node if="$(arg map)" name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/maps/srfg_map.yaml"/-->
 
    <!--- Run AMCL --> 
    <!--include file="$(find amcl)/examples/amcl_omni.launch" /-->

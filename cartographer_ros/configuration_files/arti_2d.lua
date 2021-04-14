@@ -20,9 +20,9 @@ options = {
   trajectory_builder = TRAJECTORY_BUILDER,
   map_frame = "map",
   tracking_frame = "os1_imu",
-  published_frame = "base_link",
+  published_frame = "odom",                 -- Needs to be odom, not base_link
   odom_frame = "odom",
-  provide_odom_frame = true,
+  provide_odom_frame = false,
   publish_frame_projected_to_2d = false,
   use_odometry = true,                      -- SLAM completely fails without odometry data
   use_nav_sat = false,
@@ -59,7 +59,6 @@ TRAJECTORY_BUILDER_2D.min_range = 0.4
 TRAJECTORY_BUILDER_2D.max_range = 4
 
 
-
 POSE_GRAPH.optimization_problem.huber_scale = 1e2
 
 -- turn off global SLAM to not mess with tuning of local SLAM = 0
@@ -67,7 +66,7 @@ POSE_GRAPH.optimization_problem.huber_scale = 1e2
 
 -- voxel size -- original value: 0.025
 -- value 0.5 is too high - result gets blurred
- TRAJECTORY_BUILDER_2D.voxel_filter_size = 0.025
+TRAJECTORY_BUILDER_2D.voxel_filter_size = 0.025
 
 -- size of submaps
 TRAJECTORY_BUILDER_2D.submaps.num_range_data = 1000                                       -- IMPORTANT!!!
@@ -84,10 +83,10 @@ TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 3                 
 TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 3                              -- IMPORTANT!!!
 
 -- individual weights of local SLAM and odometry
- POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 3                   -- IMPORTANT!!!
- POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 3                      -- IMPORTANT!!!
- POSE_GRAPH.optimization_problem.odometry_translation_weight = 3                          -- IMPORTANT!!!
- POSE_GRAPH.optimization_problem.odometry_rotation_weight = 3                             -- IMPORTANT!!!
+POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 3                   -- IMPORTANT!!!
+POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 3                      -- IMPORTANT!!!
+POSE_GRAPH.optimization_problem.odometry_translation_weight = 3                          -- IMPORTANT!!!
+POSE_GRAPH.optimization_problem.odometry_rotation_weight = 3                             -- IMPORTANT!!!
 
 -- Set Threads to 4 
 MAP_BUILDER.num_background_threads = 4
