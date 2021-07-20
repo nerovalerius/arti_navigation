@@ -1,0 +1,16 @@
+<launch>
+
+    <!-- Intel RealSense ROS Node - Cam with ID 043422252240 -->
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch"> 
+        <arg name="camera" value="cam_front"/>
+        <arg name="serial_no" value="043422252240"/>
+        <arg name="filters" value="spatial,temporal,pointcloud"/>
+    </include>  
+
+
+    <!-- Transformation from the 3D Camera to the robot -->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_lidar_os1" args="0.70 0.05 -0.1 0 -0.18 0 base_link cam_front_link" />
+  
+
+
+</launch>

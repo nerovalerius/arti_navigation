@@ -12,6 +12,10 @@
       <arg name="rviz" value="$(arg rviz)" />
    </include>
 
+   <!-- Run Transformations and 3D Cam -->
+   <include file="$(find arti_navigation)/launch/start_3d_cam.launch">
+   </include>
+
    <!-- Run the map server with a given map --> 
    <!--node if="$(arg map)" name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/maps/srfg_map.yaml"/-->
 
