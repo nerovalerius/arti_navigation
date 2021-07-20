@@ -29,15 +29,15 @@ footprint_padding: 0.1
 #robot_radius: ir_of_robot
 
 # defines a list of sensors that are going to be passing information to the costmap
-observation_sources: lidar 3d_camera
+observation_sources: lidar camera 
 
 # Each sensor is defined in the next lines. 
-# sensor_frame - coordinate frame tied to sensor
+# sensor_frame - coordinate frame tied to sensorx
 # data_type - type of message published by sensor
 # topic - name of topic where sensor data is published
-# arking - true if sensor can be used to mark area as occupied
+# marking - true if sensor can be used to mark area as occupied
 # clearing - true if sensor can be used to mark area as clear
 #laser_scan_sensor: {sensor_frame: os_sensor, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
 
 lidar: {sensor_frame: os_sensor, data_type: PointCloud2, topic: /os_cloud_node/points, marking: true, clearing: true} #, max_obstacle_height: 0.5, min_obstacle_height: 0.03
-3d_camera: {sensor_frame: cam_front_depth_optical_frame, data_type: PointCloud2, topic: /cam_front/depth/color/points, marking: true, clearing: true} #, max_obstacle_height: 0.5, min_obstacle_height: 0.03
+camera: {sensor_frame: cam_front_link, data_type: PointCloud2, topic: /cam_front/depth/color/points, marking: true, clearing: true} #, max_obstacle_height: 0.5, min_obstacle_height: 0.03
