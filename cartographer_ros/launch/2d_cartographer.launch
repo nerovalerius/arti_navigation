@@ -25,8 +25,8 @@
           -configuration_directory $(find arti_navigation)/cartographer_ros/configuration_files
           -configuration_basename arti_2d.lua"
       output="screen">
-    <remap from="imu" to="/os1_cloud_node/imu" />---
-    <remap from="points2" to="/os1_cloud_node/points" /> 
+    <remap from="imu" to="/os_cloud_node/imu" />---
+    <remap from="points2" to="/os_cloud_node/points" /> 
   </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"

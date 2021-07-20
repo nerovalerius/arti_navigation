@@ -7,7 +7,7 @@
    <arg name="rviz" default="true" />
    <arg name="map" default="false" />
 
-   <!-- Run Transformations and OS1 Lidar -->
+   <!-- Run Transformations and OS Lidar -->
    <include file="$(find arti_navigation)/launch/arti_with_os1.launch">
       <arg name="rviz" value="$(arg rviz)" />
    </include>

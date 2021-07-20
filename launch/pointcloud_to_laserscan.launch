@@ -3,11 +3,11 @@
 <launch>
 
     <!-- push pointcloud_to_laserscan nodelet into sensor's nodelet manager
-    <node pkg="nodelet" type="nodelet" name="pointcloud_to_laserscan" args="load pointcloud_to_laserscan/pointcloud_to_laserscan_nodelet os1_nodelet_manager"> -->
+    <node pkg="nodelet" type="nodelet" name="pointcloud_to_laserscan" args="load pointcloud_to_laserscan/pointcloud_to_laserscan_nodelet os_nodelet_manager"> -->
 
     <!-- run pointcloud_to_laserscan node -->
     <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
-        <remap from="cloud_in" to="/os1_cloud_node/points"/>
+        <remap from="cloud_in" to="/os_cloud_node/points"/>
         <remap from="/laser/scan" to="/scan" />
         <rosparam>
             <!-- target_frame: ouster # Leave disabled to output scan in pointcloud frame -->
@@ -33,9 +33,9 @@
 
     </node>
 
-    <!-- Transformation from the Ouster OS1 lidar to the robot base_link-->
-    <!--node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_os1_sensor" args="0.55 0 0 0 0 0 base_link os1_sensor" /-->
-    <!--node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_os1_lidar" args="0.55 0 0 0 0 0 base_link os1_lidar" /-->
-    <!--node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_os1_imu" args="0.55 0 0 0 0 0 base_link os1_imu" /-->
+    <!-- Transformation from the Ouster os lidar to the robot base_link-->
+    <!--node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_os_sensor" args="0.55 0 0 0 0 0 base_link os_sensor" /-->
+    <!--node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_os_lidar" args="0.55 0 0 0 0 0 base_link os_lidar" /-->
+    <!--node pkg="tf2_ros" type="static_transform_publisher" name="joint_broadcaster_os_imu" args="0.55 0 0 0 0 0 base_link os_imu" /-->
 
 </launch>
