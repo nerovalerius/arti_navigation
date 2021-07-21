@@ -24,7 +24,7 @@ raytrace_range: 8.5
 
 # ARTI: 800 mm x 600 mm - defines coordinates of robot outline, this will considered during collision detecting.
 footprint: [[0.65, 0.3], [0.65, -0.3], [-0.15, -0.3], [-0.15, 0.3]]
-footprint_padding: 0.1
+footprint_padding: 0.15
 
 #robot_radius: ir_of_robot
 

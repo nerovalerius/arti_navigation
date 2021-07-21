@@ -3,7 +3,7 @@ local_costmap:
   robot_base_frame: base_link
   update_frequency: 5
   publish_frequency: 5
-  transform_tolerance: 0.25
+  transform_tolerance: 1  # increased from 0.25 due to "unable to get starting pose of robot, unable to create global plan"
   static_map: false
   rolling_window: true
   width: 6
@@ -11,4 +11,4 @@ local_costmap:
   origin_x: -3.5
   origin_y: -3.5
   resolution: 0.025
-  inflation_radius: 0.55
+  inflation_radius: 0.1
