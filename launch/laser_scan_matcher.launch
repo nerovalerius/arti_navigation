@@ -11,7 +11,7 @@
     <param name="base_frame" value = "base_link"/>
 
     <!-- Defaults to reading laser scan inputs -->
-    <remap from="scan" to="/scan_sim"/>
+    <!--remap from="scan" to="/scan_sim"/-->
 
     <!-- Debug IMU Comp Filter -->
     <!-- Use when IMU Complementary Filter is Enabled -->
@@ -22,7 +22,7 @@
     <param name="use_cloud_input" value="false"/>
     <param name="cloud_range_min" value="1.0"/>
     <param name="cloud_range_max" value="50.0"/>
-    <remap from="cloud" to="/os1_cloud_node/points"/>       
+    <remap from="cloud" to="/os_cloud_node/points"/>       
 
     <param name="publish_tf" value="false"/>
     <param name="publish_pose_stamped" value="false"/>

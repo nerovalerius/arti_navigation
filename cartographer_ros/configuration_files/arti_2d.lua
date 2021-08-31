@@ -27,10 +27,10 @@ options = {
   use_odometry = true,                      -- SLAM completely fails without odometry data
   use_nav_sat = false,
   use_landmarks = false,
-  num_laser_scans = 0,
+  num_laser_scans = 1,                      -- use 2d laser scan                     
   num_multi_echo_laser_scans = 0,
   num_subdivisions_per_laser_scan = 1,
-  num_point_clouds = 1,
+  num_point_clouds = 0,                     -- do not use 3d lidar
   lookup_transform_timeout_sec = 0.2,
   submap_publish_period_sec = 0.3,
   pose_publish_period_sec = 5e-3,
@@ -55,8 +55,8 @@ TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.angular_search_window =
 
 -- Bandpass for 3D Point Clouds - Distance in meters
 -- Localization fails of the range is too small, e.g from 0.5 to 1
-TRAJECTORY_BUILDER_2D.min_range = 0.4
-TRAJECTORY_BUILDER_2D.max_range = 4
+TRAJECTORY_BUILDER_2D.min_range = 0.2
+TRAJECTORY_BUILDER_2D.max_range = 6
 
 
 POSE_GRAPH.optimization_problem.huber_scale = 1e2
@@ -79,20 +79,21 @@ TRAJECTORY_BUILDER_2D.submaps.num_range_data = 1000                             
 -- Costs for moving the result away from the prior 
 -- scan matching has to generate a higher score in another position to be accepted
 -- translation values: 1e3 = really expensive
-TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 3                           -- IMPORTANT!!!
-TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 3                              -- IMPORTANT!!!
+
+-- the following parameters:
+--    * Got good results with lidar cartographer and value 3
+--    * Got good results with laserscan cartographer and value 0.1 to 0.5 - 0.05 is too low!!!
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 0.1                         -- IMPORTANT!!!
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 0.1                            -- IMPORTANT!!!
 
 -- individual weights of local SLAM and odometry
-POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 3                   -- IMPORTANT!!!
-POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 3                      -- IMPORTANT!!!
-POSE_GRAPH.optimization_problem.odometry_translation_weight = 3                          -- IMPORTANT!!!
-POSE_GRAPH.optimization_problem.odometry_rotation_weight = 3                             -- IMPORTANT!!!
+POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 0.1                   -- IMPORTANT!!!
+POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 0.1                      -- IMPORTANT!!!
+POSE_GRAPH.optimization_problem.odometry_translation_weight = 0.1                          -- IMPORTANT!!!
+POSE_GRAPH.optimization_problem.odometry_rotation_weight = 0.1                             -- IMPORTANT!!!
 
 -- Set Threads to 4 
 MAP_BUILDER.num_background_threads = 4
-
--- T
-
 
 
 return options

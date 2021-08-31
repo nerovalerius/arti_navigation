@@ -6,9 +6,10 @@ local_costmap:
   transform_tolerance: 1  # increased from 0.25 due to "unable to get starting pose of robot, unable to create global plan"
   static_map: false
   rolling_window: true
-  width: 6
-  height: 6
-  origin_x: -3.5
-  origin_y: -3.5
-  resolution: 0.025
-  inflation_radius: 0.1
+  width: 4
+  height: 4
+  origin_x: -2
+  origin_y: -2
+  resolution: 0.05
+  inflation_radius: 0.4 # seems to work well
+
