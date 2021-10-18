@@ -25,12 +25,12 @@ inf_is_valid: true
 
 # ARTI: 800 mm x 600 mm - defines coordinates of robot outline, this will considered during collision detecting.
 footprint: [[0.65, 0.3], [0.65, -0.3], [-0.15, -0.3], [-0.15, 0.3]]
-footprint_padding: 0.05
+footprint_padding: 0.0
 
 #robot_radius: ir_of_robot
 
 # defines a list of sensors that are going to be passing information to the costmap - a list of sensors with space between them
-observation_sources: lidar #camera 
+observation_sources: lidar camera 
 
 # Each sensor is defined in the next lines. 
 # sensor_frame - coordinate frame tied to sensorx

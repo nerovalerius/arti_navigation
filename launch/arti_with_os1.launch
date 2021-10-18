@@ -9,10 +9,10 @@
 
   <!-- Start the Ouster OS Ros Node - PointCloud -->
 
-  <include file="/home/iotdev/arti_ws/src/ouster_example/ouster_ros/ouster.launch">
+  <include file="/home/rosdev/arti_ws/src/ouster_example/ouster_ros/ouster.launch">
     <arg name="sensor_hostname" value="$(arg os_ip)"/>
     <arg name="udp_dest" value="$(arg os_goal_ip)"/>
-    <arg name="metadata" value="/home/iotdev/ouster.json"/>
+    <arg name="metadata" value="/home/rosdev/ouster.json"/>
     <arg name="lidar_mode" value="$(arg os_resolution_and_frequency)"/>
     <arg name="viz" value="$(arg visualization)"/>
     <arg name="timestamp_mode" value="TIME_FROM_PTP_1588"/>

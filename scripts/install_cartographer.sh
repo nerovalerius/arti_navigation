@@ -13,6 +13,7 @@ wstool init src
 
 # Merge the cartographer_ros.rosinstall file and fetch code for dependencies.
 wstool merge -t src https://raw.githubusercontent.com/cartographer-project/cartographer_ros/master/cartographer_ros.rosinstall
+#wstool merge -t src /home/rosdev/carto.rosinstall
 wstool update -t src
 
 # Install deb dependencies.
@@ -23,11 +24,11 @@ rosdep update
 rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y
 
 # Install specific protobuf - ROS KINETIC ONLY
-src/cartographer/scripts/install_proto3.sh
+bash src/cartographer/scripts/install_proto3.sh
 
 # Remove Systems abseil lib and install cartographer specific one
 sudo apt-get remove ros-${ROS_DISTRO}-abseil-cpp
-src/cartographer/scripts/install_abseil.sh
+bash src/cartographer/scripts/install_abseil.sh
 
 # Build and install.
 catkin_make_isolated --install --use-ninja

@@ -15,7 +15,7 @@
    </include>
 
    <!-- Run Transformations and 3D Cam -->
-   <include file="$(find arti_navigation)/launch/start_3d_cam.launch">
+   <include file="$(find arti_navigation)/launch/start_3d_cam.launch" >
    </include>
 
    <!-- Run the map server with a given map --> 
@@ -67,10 +67,13 @@
       <rosparam file="$(find arti_navigation)/config/local_costmap_params.yaml" command="load" />
       <rosparam file="$(find arti_navigation)/config/global_costmap_params.yaml" command="load" />
       <rosparam file="$(find arti_navigation)/config/base_local_planner_params.yaml" command="load" />
-      <!--param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" /-->
-      <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+      <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
+      <!--param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /-->
       <!--param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" /-->
       <param name="controller_frequency" value="5.0"/>
+
+          <!-- LOAD COSTMAP_CONVERTER PARAMETERS HERE -->
+    <rosparam file="$(find arti_navigation)/config/costmap_converter_params.yaml" command="load" />
    </node>
 
 
