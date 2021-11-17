@@ -67,17 +67,17 @@ TebLocalPlannerROS:
  dt_ref: 0.3
  dt_hysteresis: 0.1
  global_plan_overwrite_orientation: True
- max_global_plan_lookahead_dist: 3.0
+ max_global_plan_lookahead_dist: 10False
  feasibility_check_no_poses: 3
     
  # Robot
          
- max_vel_x: 0.4
- max_vel_x_backwards: 0.4
- max_vel_theta: 0.4
+ max_vel_x: 0.30
+ max_vel_x_backwards: 0.30
+ max_vel_theta: 0.34
  acc_lim_x: 0.4
  acc_lim_theta: 0.4 
- min_turning_radius: 0.9 # You might set the value slighly larger, since bounding is performed using soft-constfraints in optimization (penalties).
+ min_turning_radius: 1 # You might set the value slighly larger, since bounding is performed using soft-constfraints in optimization (penalties).
  footprint_model: # types: "point", "circular", "two_circles", "line", "polygon"
    type: "polygon"
    radius: 0.2 # for type "circular"
@@ -97,7 +97,7 @@ TebLocalPlannerROS:
     
  # Obstacles
     
- min_obstacle_dist: 0.2 # The allowed minimum Euclidean distance to the obstacle
+ min_obstacle_dist: 0.13 # The allowed minimum Euclidean distance to the obstacle
  include_costmap_obstacles: True
  costmap_obstacles_behind_robot_dist: 1.0
  obstacle_poses_affected: 30
@@ -119,9 +119,9 @@ TebLocalPlannerROS:
  weight_acc_lim_theta: 1
  weight_kinematics_nh: 1000
  weight_kinematics_forward_drive: 0 #  is ignored if the minimum turning radius is non-zero.
- weight_kinematics_turning_radius: 10
+ weight_kinematics_turning_radius: 20
  weight_optimaltime: 3
- weight_obstacle: 30
+ weight_obstacle: 20
  weight_dynamic_obstacle: 10 # not in use yet
  selection_alternative_time_cost: False # not in use yet
 

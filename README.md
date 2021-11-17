@@ -37,10 +37,13 @@ After the ros nodes on the robot and the os1_lidar with rviz is launched, start 
 #### Saving the map
 To store the processed data of google cartographer, please use the following commands while the cartographer node is still running:
 
-- `rosservice call /write_state "filename: 'map.pbstream' 
-include_unfinished_submaps: true"`
+- `rosservice call /finish_trajectory 0`
+- `rosservice call /write_state robxtask_1.pbstream true`
+- `rosrun map_server map_saver -f robxtask_1`
+- `mv .ros/robxtask_1.pbstream ~`
 
-- `mv .ros/map.pbstream ~`
+This map can then later be used for localization only purposes. The *.yaml file has to be given as parameter for the map server `arti_navigation/launch/move_base.launch`
+and 
 
 ## Tuning and Configuration
 ### Important Files
@@ -61,10 +64,5 @@ There are some crucial parameters to set and optimize, otherwise the map creatio
     - See [[costmap_2d]](http://wiki.ros.org/costmap_2d) and [[navigation stack setup]](http://wiki.ros.org/navigation/Tutorials/RobotSetup).
 - [**local_costmap_params.yaml**](https://github.com/nerovalerius/arti_navigation/blob/master/cartographer_ros/configuration_files/arti_2d.lua)
     - See [[costmap_2d]](http://wiki.ros.org/costmap_2d) and [[navigation stack setup]](http://wiki.ros.org/navigation/Tutorials/RobotSetup).
-
-
-
-
-
 
 

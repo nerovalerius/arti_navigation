@@ -6,8 +6,9 @@
    <arg name="gmapping" default="false" />
    <arg name="cartographer" default="true" />
    <arg name="rviz" default="true" />
-   <arg name="map" default="false" />
+   <arg name="map" default="true" />
    <arg name="ekf" default="true" />
+   <arg name="rxt" default="true" />  <!-- stuff that is only required in ROBxTASK project (use with -> node if="$(arg map)") -->
 
    <!-- Run Transformations and OS Lidar -->
    <include file="$(find arti_navigation)/launch/arti_with_os1.launch">
@@ -19,7 +20,7 @@
    </include>
 
    <!-- Run the map server with a given map --> 
-   <!--node if="$(arg map)" name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/maps/srfg_map.yaml"/-->
+   <!--node if="$(arg map)" name="map_server" pkg="map_server" type="map_server" args="$(find arti_navigation)/maps/robxtask_1.yaml"/-->
 
    <!--- Run AMCL --> 
    <!--include file="$(find amcl)/examples/amcl_omni.launch" /-->
