@@ -95,9 +95,9 @@ POSE_GRAPH.optimization_problem.odometry_rotation_weight = 0.1                  
 
 -- FOR PRE CREATED MAP ONLY 
 -- -- both parameters are from os1 cartographer tutorial online, for use with predefined map
---TRAJECTORY_BUILDER.pure_localization_trimmer = {
---  max_submaps_to_keep = 3,
---}
+TRAJECTORY_BUILDER.pure_localization_trimmer = {
+  max_submaps_to_keep = 3,
+}
 
 POSE_GRAPH.optimize_every_n_nodes = 2
 POSE_GRAPH.constraint_builder.sampling_ratio = 0.05

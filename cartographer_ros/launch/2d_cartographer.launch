@@ -29,10 +29,11 @@
       type="cartographer_node" args="
           -configuration_directory $(find arti_navigation)/cartographer_ros/configuration_files
           -configuration_basename arti_2d.lua
+          -load_state_filename $(find arti_navigation)/maps/robxtask_1.pbstream
+          
           "
-      output="screen">
-          <!-- -load_state_filename $(find arti_navigation)/maps/robxtask_1.pbstream-->
 
+      output="screen">
     <remap from="imu" to="/os_cloud_node/imu" />
     <remap from="points2" to="/os_cloud_node/points" /> 
   </node>
