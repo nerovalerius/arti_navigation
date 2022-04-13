@@ -42,6 +42,7 @@ options = {
   landmarks_sampling_ratio = 1.,
 }
 
+
 MAP_BUILDER.use_trajectory_builder_2d = true
 
 TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
@@ -69,7 +70,7 @@ POSE_GRAPH.optimization_problem.huber_scale = 1e2
 TRAJECTORY_BUILDER_2D.voxel_filter_size = 0.025
 
 -- size of submaps
-TRAJECTORY_BUILDER_2D.submaps.num_range_data = 1000                                       -- IMPORTANT!!!
+-- TRAJECTORY_BUILDER_2D.submaps.num_range_data = 1000                                       -- IMPORTANT!!!
 
 -- Number of 3D Images for a single scan -- 1 or let it be - does not help
 -- TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 1
@@ -92,8 +93,18 @@ POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 0.1           
 POSE_GRAPH.optimization_problem.odometry_translation_weight = 0.1                          -- IMPORTANT!!!
 POSE_GRAPH.optimization_problem.odometry_rotation_weight = 0.1                             -- IMPORTANT!!!
 
--- Set Threads to 4 
-MAP_BUILDER.num_background_threads = 4
+-- FOR PRE CREATED MAP ONLY 
+-- -- both parameters are from os1 cartographer tutorial online, for use with predefined map
+--TRAJECTORY_BUILDER.pure_localization_trimmer = {
+--  max_submaps_to_keep = 3,
+--}
 
-
+POSE_GRAPH.optimize_every_n_nodes = 2
+POSE_GRAPH.constraint_builder.sampling_ratio = 0.05
+POSE_GRAPH.constraint_builder.min_score = 0.65
+POSE_GRAPH.global_constraint_search_after_n_seconds = 20.
+POSE_GRAPH.constraint_builder.ceres_scan_matcher.ceres_solver_options.max_num_iterations = 6
+MAP_BUILDER.num_background_threads = 8
+POSE_GRAPH.global_sampling_ratio = 0.003
+  
 return options

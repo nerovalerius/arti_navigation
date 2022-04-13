@@ -20,15 +20,34 @@
   <!--param name="robot_description" textfile="$(find arti_navigation)/cartographer_ros/urdf/os1_sensor.urdf"-->
   <!--param name="robot_description" textfile="$(find arti_navigation)/cartographer_ros/urdf/arti_mk3.urdf" /-->
 
-  <node name="cartographer_node" pkg="cartographer_ros"
+  <!-- rosrun cartographer_ros cartographer_start_trajectory -configuration_directory '/home/rosdev/arti_ws/src/arti_navigation/config' -configuration_basename 'arti_2d.lua' -initial_pose '{to_trajectory_id = 0, relative_pose = { translation = {0.0, 0.0, 0. }, rotation = { 0.0, 0.0, 0.0 } } ,timestamp = 0}'
+
+  https://github.com/cartographer-project/cartographer_ros/issues/579 -->
+
+    <!-- -start_trajectory_with_default_topics=false-->
+    <node name="cartographer_node" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory $(find arti_navigation)/cartographer_ros/configuration_files
+          -configuration_basename arti_2d.lua
+          "
+      output="screen">
+          <!-- -load_state_filename $(find arti_navigation)/maps/robxtask_1.pbstream-->
+
+    <remap from="imu" to="/os_cloud_node/imu" />
+    <remap from="points2" to="/os_cloud_node/points" /> 
+  </node>
+
+  <!--node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
           -configuration_directory $(find arti_navigation)/cartographer_ros/configuration_files
           -configuration_basename arti_2d.lua"
       output="screen">
-    <remap from="imu" to="/os_cloud_node/imu" />---
+    <remap from="imu" to="/os_cloud_node/imu" />
     <remap from="points2" to="/os_cloud_node/points" /> 
-  </node>
+  </node-->
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
       type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
 </launch>
+
+

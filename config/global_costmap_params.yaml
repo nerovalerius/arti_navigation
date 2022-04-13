@@ -5,11 +5,12 @@ global_costmap:
   robot_base_frame: base_link
   publish_frequency: 5
   transform_tolerance: 0.5  # increased from 0.5 due to "unable to get starting pose of robot, unable to create global plan"
-  width: 10
-  height: 10
-  origin_x: -5
-  origin_y: -5
+  width: 20
+  height: 20
+  origin_x: -10
+  origin_y: -10
   static_map: false # Using a existing map -> true, else -> false
   rolling_window: true
-  inflation_radius: 0.7 # seems to work well
+  inflation_radius: 0.5 # seems to work well
   resolution: 0.1
+  max_obstacle_height : 1

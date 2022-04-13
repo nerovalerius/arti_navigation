@@ -3,7 +3,7 @@
 # In order to do this properly, we'll need to point the costmaps at the sensor topics they should listen to for updates.
 
 # determines the maximum range sensor reading that will result in an obstacle being put into the costmap
-obstacle_range: 4.0 
+obstacle_range: 8.0 
 # the robot will attempt to clear out space in front of it up to X.X meters away given a sensor reading
 raytrace_range: 10.0
 inf_is_valid: true
@@ -30,7 +30,7 @@ footprint_padding: 0.0
 #robot_radius: ir_of_robot
 
 # defines a list of sensors that are going to be passing information to the costmap - a list of sensors with space between them
-observation_sources: lidar camera 
+observation_sources: lidar #camera 
 
 # Each sensor is defined in the next lines. 
 # sensor_frame - coordinate frame tied to sensorx
